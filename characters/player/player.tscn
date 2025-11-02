@@ -1,10 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://co2u7uburylva"]
+[gd_scene load_steps=3 format=3 uid="uid://co2u7uburylva"]
+
+[ext_resource type="Script" uid="uid://bdeeyqns1244" path="res://characters/player/player.gd" id="1_508ok"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_b886q"]
-radius = 16.0
-height = 64.0
+radius = 8.0
+height = 32.0
 
-[node name="CharacterBody2D" type="CharacterBody2D"]
+[node name="player" type="CharacterBody2D"]
+script = ExtResource("1_508ok")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_b886q")
