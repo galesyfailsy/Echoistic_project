@@ -1,83 +1,78 @@
 extends CharacterBody2D
 
-#Base speed
 const SPEED = 600.0
-#Jump force
-const JUMPFORCE = -450.0
-#Lerp weight for movement, clamped between 0 (Standing still) and 3 (3x base speed)
-var move_dir: float = 0.0:
+var moveweight: float = 0.0:
 	set(value):
-		move_dir = clampf(value, -3.0, 3.0)
+		moveweight = clampf(value, -1.0, 1.0)
 
-#How long it takes to reach the base speed value
-const BASE_ACCELERATION_TIME = 1.0
-#How long it takes to reach 2x and 3x base speed values. 
-const EXTRA_ACCELERATION_TIME = 0.2
+const JUMPFORCE = -450.0
+const MAX_jumpbuffer = 0.1
+var jumpbuffer: float = 0.0
+
+const DASHSPEED = SPEED * 2
+const MAX_dashbuffer = 0.1
+const DASH_DURATION = 0.25
+var dashbuffer: float = 0.0
+var dashtime: float = 0.0
+var can_dash: bool = true
+
+const MAX_coyotetime = 0.1
+var coyotetime: float = 0.0
 
 func _physics_process(_delta: float) -> void:
-	input_buffers()
-	move_process()
+	time_buffers_process()
+	moveprocess()
 
-var jump_buffer: float = 0.0
-const MAX_jumpbuffer = 0.1
-
-var coyote_time: float = 0.0
-const MAX_coyote_time = 0.1
-
-const MAX_intowallbuffer = 0.05
-var into_wall_buffer = 0.0
-
-func input_buffers():
-	if jump_buffer > 0.0:
-		jump_buffer -= get_physics_process_delta_time()
-	if coyote_time > 0:
-		coyote_time -= get_physics_process_delta_time()
+func time_buffers_process():
+	if jumpbuffer > 0: jumpbuffer -= get_physics_process_delta_time()
+	if dashbuffer > 0: dashbuffer -= get_physics_process_delta_time()
+	if coyotetime > 0: coyotetime -= get_physics_process_delta_time()
 	
 	if Input.is_action_just_pressed("jump"):
-		jump_buffer = MAX_jumpbuffer
+		jumpbuffer = MAX_jumpbuffer
+	if Input.is_action_just_pressed("dash"):
+		dashbuffer = MAX_dashbuffer
 	if is_on_floor():
-		coyote_time = MAX_coyote_time
-	elif is_on_wall():
-		coyote_time = MAX_coyote_time
-	
+		coyotetime = MAX_coyotetime
 
-#Movement handling
-func move_process():
-	if !is_on_floor():
-		var grav = get_gravity()
-		if is_on_wall(): grav /= 3.0
-		velocity += grav * get_physics_process_delta_time()
-	
-	var input = Input.get_axis("left", "right")
-	if input:
-		if absf(velocity.x) < SPEED:
-			move_dir += input * 0.05
+func moveprocess(): 
+	if dashtime <= 0.0:
+		if !is_on_floor():
+			velocity += get_gravity() * get_physics_process_delta_time()
 		else:
-			move_dir += input * 0.01
-	else:
-		move_dir = lerpf(move_dir, 0.0, 0.2)
-	velocity.x = SPEED * move_dir
-	
-	if jump_buffer > 0.0 and coyote_time > 0:
-		coyote_time = 0.0
-		jump_buffer = 0.0
-		if is_on_wall():
-			velocity.x = get_wall_normal().x * JUMPFORCE
-			move_dir = get_wall_normal().x
-		velocity.y = JUMPFORCE
+			can_dash = true
 		
-	elif Input.is_action_just_released("jump") and velocity.y < 0:
-		velocity.y /= 2
-	#
-	#if target_direction == -get_wall_normal().x:
-		#into_wall_buffer += get_process_delta_time()
-	#else:
-		#into_wall_buffer = 0.0
-	#
-	#if into_wall_buffer > MAX_intowallbuffer:
-		#move_dir = 0.0
-	
-	move_and_slide()
+		var input = Input.get_axis("left","right")
+		if input:
+			moveweight += input * get_physics_process_delta_time()
+			if signf(input) != signf(moveweight) and absf(moveweight) > 0.25 and is_on_wall():
+				moveweight = get_wall_normal().x
+		else:
+			moveweight -= signf(moveweight) * get_physics_process_delta_time()
+			if absf(moveweight) < 0.01: moveweight = 0.0
+		
+		velocity.x = moveweight * SPEED
+		
+		if jumpbuffer > 0 and coyotetime > 0:
+			velocity.y = JUMPFORCE
+		
+		if can_dash and dashbuffer > 0:
+			can_dash = false
+			dashtime = DASH_DURATION
+			velocity = get_local_mouse_position().normalized() * DASHSPEED
+			moveweight = 0.0
+		
+		move_and_slide()
 
-#Combat handling
-func combat_process(): pass
+	else:
+		dashtime -= get_physics_process_delta_time()
+		if dashtime <= 0:
+			velocity /= 2.0
+		else:
+			var collision = move_and_collide(velocity * get_physics_process_delta_time())
+			if collision:
+				velocity = velocity.bounce(collision.get_normal()) * 1.1
+				moveweight = collision.get_normal().x
+			
+	
+	

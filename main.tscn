@@ -16,11 +16,11 @@ position = Vector2(0, 650)
 shape = SubResource("WorldBoundaryShape2D_0xm2m")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(405.5, 510)
+position = Vector2(164, 510)
 shape = SubResource("RectangleShape2D_ig7tw")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(760, 510)
+position = Vector2(1002, 510)
 shape = SubResource("RectangleShape2D_ig7tw")
 
 [node name="player" parent="." instance=ExtResource("1_ig7tw")]
