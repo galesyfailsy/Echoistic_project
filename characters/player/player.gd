@@ -11,7 +11,7 @@ var jumpbuffer: float = 0.0
 
 const DASHSPEED = SPEED * 2
 const MAX_dashbuffer = 0.1
-const DASH_DURATION = 0.25
+const DASH_DURATION = 0.15
 var dashbuffer: float = 0.0
 var dashtime: float = 0.0
 var can_dash: bool = true
@@ -46,7 +46,7 @@ func moveprocess():
 		if input:
 			moveweight += input * get_physics_process_delta_time()
 			if signf(input) != signf(moveweight) and absf(moveweight) > 0.25 and is_on_wall():
-				moveweight = get_wall_normal().x
+				moveweight = get_wall_normal().x * absf(moveweight)
 		else:
 			moveweight -= signf(moveweight) * get_physics_process_delta_time()
 			if absf(moveweight) < 0.01: moveweight = 0.0
@@ -71,8 +71,12 @@ func moveprocess():
 		else:
 			var collision = move_and_collide(velocity * get_physics_process_delta_time())
 			if collision:
-				velocity = velocity.bounce(collision.get_normal()) * 1.1
-				moveweight = collision.get_normal().x
+				velocity = velocity.bounce(collision.get_normal())
+				var newweight
+				if collision.get_normal().x == 0.0:
+					newweight = velocity.normalized().x
+				else:
+					newweight = collision.get_normal().x
+				moveweight = newweight
+				dashtime = DASH_DURATION
 			
-	
-	

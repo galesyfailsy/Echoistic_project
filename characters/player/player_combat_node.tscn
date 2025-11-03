@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://bl275dw2ixm1m"]
+
+[node name="PlayerCombatNode" type="Node2D"]

@@ -12,7 +12,7 @@ size = Vector2(153, 345)
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(0, 650)
+position = Vector2(0, 571)
 shape = SubResource("WorldBoundaryShape2D_0xm2m")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
@@ -24,4 +24,4 @@ position = Vector2(1002, 510)
 shape = SubResource("RectangleShape2D_ig7tw")
 
 [node name="player" parent="." instance=ExtResource("1_ig7tw")]
-position = Vector2(578, 524)
+position = Vector2(578, 316)
