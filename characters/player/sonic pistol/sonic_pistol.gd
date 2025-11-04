@@ -10,8 +10,8 @@ func fire():
 		var query = PhysicsRayQueryParameters2D.create(targetpos, targetpos + targetdir * 1600, 1 << 0 | 1 << 2)
 		var result = get_viewport().world_2d.direct_space_state.intersect_ray(query)
 		if !result.is_empty() and !(bounces >= MAX_bounces):
-			printt("hit", result)
-			#if collider is enemy
+			#if collider is enemy TODO
+			#elif collider is Reverber Projectile TODO
 			#else
 			targetpos = result.get("position") + result.get("normal")
 			targetdir = targetdir.bounce(result.get("normal").normalized())

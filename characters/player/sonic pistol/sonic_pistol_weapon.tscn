@@ -1,31 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://diqmiksmp2orb"]
+[gd_scene load_steps=2 format=3 uid="uid://diqmiksmp2orb"]
 
 [ext_resource type="Script" uid="uid://jht3p2u2we6t" path="res://characters/player/sonic pistol/sonic_pistol.gd" id="1_82h8i"]
-[ext_resource type="Texture2D" uid="uid://b31utrue78nw3" path="res://icon.svg" id="2_i2p2a"]
 
 [node name="SonicPistol_Weapon" type="Node2D"]
 script = ExtResource("1_82h8i")
-
-[node name="0" type="Sprite2D" parent="."]
-top_level = true
-texture = ExtResource("2_i2p2a")
-
-[node name="1" type="Sprite2D" parent="."]
-top_level = true
-texture = ExtResource("2_i2p2a")
-
-[node name="2" type="Sprite2D" parent="."]
-top_level = true
-texture = ExtResource("2_i2p2a")
-
-[node name="3" type="Sprite2D" parent="."]
-top_level = true
-texture = ExtResource("2_i2p2a")
-
-[node name="4" type="Sprite2D" parent="."]
-top_level = true
-texture = ExtResource("2_i2p2a")
-
-[node name="5" type="Sprite2D" parent="."]
-top_level = true
-texture = ExtResource("2_i2p2a")
