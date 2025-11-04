@@ -1,3 +1,8 @@
-[gd_scene format=3 uid="uid://bl275dw2ixm1m"]
+[gd_scene load_steps=2 format=3 uid="uid://bl275dw2ixm1m"]
+
+[ext_resource type="PackedScene" uid="uid://diqmiksmp2orb" path="res://characters/player/sonic pistol/sonic_pistol_weapon.tscn" id="1_nhvnd"]
 
 [node name="PlayerCombatNode" type="Node2D"]
+
+[node name="SonicPistol_Weapon" parent="." instance=ExtResource("1_nhvnd")]
+ReloadTime = 1.0

@@ -1,13 +1,18 @@
-[gd_scene load_steps=3 format=3 uid="uid://co2u7uburylva"]
+[gd_scene load_steps=4 format=3 uid="uid://co2u7uburylva"]
 
 [ext_resource type="Script" uid="uid://bdeeyqns1244" path="res://characters/player/player.gd" id="1_508ok"]
+[ext_resource type="PackedScene" uid="uid://bl275dw2ixm1m" path="res://characters/player/player_combat_node.tscn" id="2_xxgcw"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_b886q"]
 radius = 8.0
 height = 32.0
 
 [node name="PlayerMovementNode" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 17
 script = ExtResource("1_508ok")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_b886q")
+
+[node name="PlayerCombatNode" parent="." instance=ExtResource("2_xxgcw")]
