@@ -12,6 +12,7 @@ script = ExtResource("1_13x2e")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_8dol8")
+debug_color = Color(0.9623242, 2.0214916e-06, 0.5080306, 0.41960785)
 
 [node name="Hitbox" type="Area2D" parent="."]
 collision_layer = 0
