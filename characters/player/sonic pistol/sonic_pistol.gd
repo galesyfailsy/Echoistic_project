@@ -12,8 +12,7 @@ func fire():
 		var result = get_viewport().world_2d.direct_space_state.intersect_ray(query)
 		if !result.is_empty() and !(bounces >= MAX_bounces):
 			dampening += targetpos.distance_to(result.get("position")) / 50.0
-			if result.get("collider") is Enemy: 
-				print("enemy hit")
+			if result.get("collider") is Enemy:
 				var target: Enemy = result.get("collider")
 				target.take_damage(maxf(1.0, Damage - dampening), targetdir)
 				break

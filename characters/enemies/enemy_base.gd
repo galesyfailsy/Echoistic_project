@@ -2,7 +2,7 @@
 extends CharacterBody2D
 class_name Enemy
 
-const SPEED_CONSTANT = 600.0
+const SPEED_CONSTANT = 500.0
 
 @export var Health: float = 15.0
 @export var Speed: float = 1.0

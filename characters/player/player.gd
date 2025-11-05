@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+#region Movement
+
 const SPEED = 600.0
 var moveweight: float = 0.0:
 	set(value):
@@ -20,10 +22,11 @@ const MAX_coyotetime = 0.1
 var coyotetime: float = 0.0
 
 func _physics_process(_delta: float) -> void:
-	time_buffers_process()
+	life_buffers_process()
+	move_buffers_process()
 	moveprocess()
 
-func time_buffers_process():
+func move_buffers_process():
 	if jumpbuffer > 0: jumpbuffer -= get_physics_process_delta_time()
 	if dashbuffer > 0: dashbuffer -= get_physics_process_delta_time()
 	if coyotetime > 0: coyotetime -= get_physics_process_delta_time()
@@ -36,6 +39,9 @@ func time_buffers_process():
 		coyotetime = MAX_coyotetime
 
 func moveprocess(): 
+	if knocked_back > 0:
+		move_and_slide()
+		return
 	if dashtime <= 0.0:
 		if !is_on_floor():
 			velocity += get_gravity() * get_physics_process_delta_time()
@@ -80,3 +86,25 @@ func moveprocess():
 				moveweight = newweight
 				dashtime = DASH_DURATION
 			
+
+#endregion
+
+#region Combat
+
+const MAX_HP = 5
+var health: int = 5
+var knocked_back: float = 0.0
+
+const KB_FORCE = 800.0
+
+func life_buffers_process():
+	if knocked_back > 0:
+		knocked_back -= get_physics_process_delta_time()
+
+func take_damage(dir: Vector2):
+	health -= 1
+	if health <= 0:
+		return
+	knocked_back = 0.2
+	velocity = KB_FORCE * dir
+#endregion

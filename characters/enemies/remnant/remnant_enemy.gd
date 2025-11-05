@@ -3,6 +3,7 @@ extends Enemy
 const JUMPFORCE = -450.0
 
 var target: Node2D
+var attacking: bool = false
 
 func behavior():
 	if !target:
@@ -22,4 +23,10 @@ func behavior():
 	move_and_slide()
 	
 
-func attack(): pass
+func attack():
+	if attacking: return
+	attacking = true
+	await get_tree().create_timer(0.5).timeout
+	$Hitbox/CollisionShape2D.position.x = 20 * signf(target.global_position.x - global_position.x)
+	$Hitbox.activate(0.1)
+	attacking = false

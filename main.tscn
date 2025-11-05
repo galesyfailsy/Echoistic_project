@@ -16,12 +16,13 @@ size = Vector2(153, 345)
 [node name="Main" type="Node2D"]
 
 [node name="player" parent="." instance=ExtResource("1_ig7tw")]
-position = Vector2(578, 316)
+position = Vector2(210, 79)
 
 [node name="RemnantEnemy" parent="." instance=ExtResource("2_0xm2m")]
-position = Vector2(744, 366)
+position = Vector2(498, 272)
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+position = Vector2(-257, -227)
 navigation_polygon = SubResource("NavigationPolygon_ig7tw")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="NavigationRegion2D"]
@@ -31,9 +32,9 @@ position = Vector2(0, 571)
 shape = SubResource("WorldBoundaryShape2D_0xm2m")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="NavigationRegion2D/StaticBody2D"]
-position = Vector2(164, 510)
+position = Vector2(292, 501)
 shape = SubResource("RectangleShape2D_ig7tw")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="NavigationRegion2D/StaticBody2D"]
-position = Vector2(1002, 510)
+position = Vector2(887, 499)
 shape = SubResource("RectangleShape2D_ig7tw")

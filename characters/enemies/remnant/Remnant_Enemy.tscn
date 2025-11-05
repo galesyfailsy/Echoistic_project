@@ -1,10 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://djh8qjsorsv6p"]
+[gd_scene load_steps=5 format=3 uid="uid://djh8qjsorsv6p"]
 
 [ext_resource type="Script" uid="uid://cc4offuy7xb7p" path="res://characters/enemies/remnant/remnant_enemy.gd" id="1_13x2e"]
+[ext_resource type="PackedScene" uid="uid://c522ocb521xv3" path="res://characters/enemies/hitbox.tscn" id="2_8dol8"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8dol8"]
 radius = 8.0
 height = 32.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8dol8"]
+size = Vector2(24, 32)
 
 [node name="RemnantEnemy" type="CharacterBody2D"]
 collision_layer = 4
@@ -14,8 +18,10 @@ script = ExtResource("1_13x2e")
 shape = SubResource("CapsuleShape2D_8dol8")
 debug_color = Color(0.9623242, 2.0214916e-06, 0.5080306, 0.41960785)
 
-[node name="Hitbox" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 2
+[node name="Hitbox" parent="." instance=ExtResource("2_8dol8")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(-20, 0)
+shape = SubResource("RectangleShape2D_8dol8")
 
 [node name="navagent" type="NavigationAgent2D" parent="."]
