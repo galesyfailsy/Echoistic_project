@@ -2,11 +2,13 @@
 extends CharacterBody2D
 class_name Enemy
 
+const SPEED_CONSTANT = 600.0
+
 @export var Health: float = 15.0
 @export var Speed: float = 1.0
 @export var KBFactor: float = 1.0
 
-func _process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	behavior()
 
 @abstract func behavior()

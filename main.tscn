@@ -1,6 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://dqnoqaa1e01ce"]
+[gd_scene load_steps=6 format=3 uid="uid://dqnoqaa1e01ce"]
 
 [ext_resource type="PackedScene" uid="uid://co2u7uburylva" path="res://characters/player/player.tscn" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://djh8qjsorsv6p" path="res://characters/enemies/remnant/Remnant_Enemy.tscn" id="2_0xm2m"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_ig7tw"]
+vertices = PackedVector2Array(1098.4688, 607.9219, 1088.5, 607.85156, 1088.5, 410.21094, 250.5, 327.5, 96.28906, 327.5, 104.28906, 220.72656, 1077.5, 192.28125, 1084.3281, 327.5, 915.5, 327.5, 250.5, 602.22656, 915.5, 606.7031, 77.5, 601.0781, 75.77344, 601.0703, 77.5, 578.0078)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2), PackedInt32Array(3, 4, 5, 6), PackedInt32Array(6, 7, 8), PackedInt32Array(3, 6, 8, 9), PackedInt32Array(8, 10, 9), PackedInt32Array(11, 12, 13)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(79, 192, 1087, 182, 1109, 618, 65, 611)])
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_0xm2m"]
 
@@ -9,19 +15,25 @@ size = Vector2(153, 345)
 
 [node name="Main" type="Node2D"]
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="player" parent="." instance=ExtResource("1_ig7tw")]
+position = Vector2(578, 316)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="RemnantEnemy" parent="." instance=ExtResource("2_0xm2m")]
+position = Vector2(744, 366)
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_ig7tw")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="NavigationRegion2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NavigationRegion2D/StaticBody2D"]
 position = Vector2(0, 571)
 shape = SubResource("WorldBoundaryShape2D_0xm2m")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="NavigationRegion2D/StaticBody2D"]
 position = Vector2(164, 510)
 shape = SubResource("RectangleShape2D_ig7tw")
 
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="NavigationRegion2D/StaticBody2D"]
 position = Vector2(1002, 510)
 shape = SubResource("RectangleShape2D_ig7tw")
-
-[node name="player" parent="." instance=ExtResource("1_ig7tw")]
-position = Vector2(578, 316)
