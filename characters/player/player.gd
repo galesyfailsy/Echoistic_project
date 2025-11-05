@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+
 #region Movement
 
 const SPEED = 600.0
@@ -20,11 +21,6 @@ var can_dash: bool = true
 
 const MAX_coyotetime = 0.1
 var coyotetime: float = 0.0
-
-func _physics_process(_delta: float) -> void:
-	life_buffers_process()
-	move_buffers_process()
-	moveprocess()
 
 func move_buffers_process():
 	if jumpbuffer > 0: jumpbuffer -= get_physics_process_delta_time()
@@ -85,6 +81,9 @@ func moveprocess():
 					newweight = collision.get_normal().x
 				moveweight = newweight
 				dashtime = DASH_DURATION
+				if collision.get_collider() is Enemy:
+					ivtime = MAX_ivtime
+					collision.get_collider().take_damage(5.0, -collision.get_normal() * 2.0)
 			
 
 #endregion
@@ -93,18 +92,31 @@ func moveprocess():
 
 const MAX_HP = 5
 var health: int = 5
+
 var knocked_back: float = 0.0
+
+const MAX_ivtime = 1.0
+var ivtime = 0.0
 
 const KB_FORCE = 800.0
 
 func life_buffers_process():
 	if knocked_back > 0:
 		knocked_back -= get_physics_process_delta_time()
+	if ivtime > 0: 
+		ivtime -= get_physics_process_delta_time()
 
 func take_damage(dir: Vector2):
+	if ivtime > 0: return
 	health -= 1
 	if health <= 0:
 		return
 	knocked_back = 0.2
+	ivtime = MAX_ivtime
 	velocity = KB_FORCE * dir
 #endregion
+
+func _physics_process(_delta: float) -> void:
+	life_buffers_process()
+	move_buffers_process()
+	moveprocess()

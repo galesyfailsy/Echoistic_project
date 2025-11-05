@@ -2,12 +2,9 @@ extends Enemy
 
 const JUMPFORCE = -450.0
 
-var target: Node2D
 var attacking: bool = false
 
 func behavior():
-	if !target:
-		target = get_tree().get_first_node_in_group("PlayerNode")
 	if !is_on_floor():
 		velocity += get_gravity() * get_physics_process_delta_time()
 	

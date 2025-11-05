@@ -1,11 +1,11 @@
 [gd_scene load_steps=6 format=3 uid="uid://dqnoqaa1e01ce"]
 
 [ext_resource type="PackedScene" uid="uid://co2u7uburylva" path="res://characters/player/player.tscn" id="1_ig7tw"]
-[ext_resource type="PackedScene" uid="uid://djh8qjsorsv6p" path="res://characters/enemies/remnant/Remnant_Enemy.tscn" id="2_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://t53i01l0vqsj" path="res://characters/enemies/diffractor/Diffractor_enemy.tscn" id="2_0xm2m"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_ig7tw"]
-vertices = PackedVector2Array(1098.4688, 607.9219, 1088.5, 607.85156, 1088.5, 410.21094, 250.5, 327.5, 96.28906, 327.5, 104.28906, 220.72656, 1077.5, 192.28125, 1084.3281, 327.5, 915.5, 327.5, 250.5, 602.22656, 915.5, 606.7031, 77.5, 601.0781, 75.77344, 601.0703, 77.5, 578.0078)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2), PackedInt32Array(3, 4, 5, 6), PackedInt32Array(6, 7, 8), PackedInt32Array(3, 6, 8, 9), PackedInt32Array(8, 10, 9), PackedInt32Array(11, 12, 13)])
+vertices = PackedVector2Array(1077.4922, 192.09375, 1098.4688, 607.9219, 973.5, 607.0781, 973.5, 316.5, 88.671875, 201.89844, 800.5, 316.5, 205.5, 601.9375, 75.328125, 601.0625, 205.5, 318.5, 378.5, 318.5, 800.5, 605.9219, 378.5, 603.09375)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 0, 3, 5), PackedInt32Array(6, 7, 4, 8), PackedInt32Array(8, 4, 5, 9), PackedInt32Array(5, 10, 11, 9)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(79, 192, 1087, 182, 1109, 618, 65, 611)])
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_0xm2m"]
@@ -15,11 +15,11 @@ size = Vector2(153, 345)
 
 [node name="Main" type="Node2D"]
 
+[node name="DiffractorEnemy" parent="." instance=ExtResource("2_0xm2m")]
+position = Vector2(516, 115)
+
 [node name="player" parent="." instance=ExtResource("1_ig7tw")]
 position = Vector2(210, 79)
-
-[node name="RemnantEnemy" parent="." instance=ExtResource("2_0xm2m")]
-position = Vector2(498, 272)
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 position = Vector2(-257, -227)

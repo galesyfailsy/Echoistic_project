@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://t53i01l0vqsj"]
+
+[ext_resource type="Script" uid="uid://cu2cfqbmxc6od" path="res://characters/enemies/diffractor/diffractor_enemy.gd" id="1_0cn0y"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tt4fq"]
+radius = 8.0
+height = 32.0
+
+[node name="DiffractorEnemy" type="CharacterBody2D"]
+script = ExtResource("1_0cn0y")
+Health = 20.0
+Speed = 0.5
+KBFactor = 1.5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_tt4fq")
+debug_color = Color(0.9719755, 0, 0.44753247, 0.41960785)
+
+[node name="ParryRay" type="RayCast2D" parent="."]
+enabled = false
+collision_mask = 2
+
+[node name="Sightray" type="RayCast2D" parent="."]
