@@ -1,8 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://bl275dw2ixm1m"]
+[gd_scene load_steps=4 format=3 uid="uid://bl275dw2ixm1m"]
 
+[ext_resource type="Script" uid="uid://dqu0m8wi8rd0a" path="res://characters/player/player_combat_node.gd" id="1_dbflm"]
 [ext_resource type="PackedScene" uid="uid://diqmiksmp2orb" path="res://characters/player/sonic pistol/sonic_pistol_weapon.tscn" id="1_nhvnd"]
+[ext_resource type="PackedScene" uid="uid://dvsfcd6hbak57" path="res://characters/player/reverber/reverber_weapon.tscn" id="3_qnhb4"]
 
 [node name="PlayerCombatNode" type="Node2D"]
+script = ExtResource("1_dbflm")
 
 [node name="SonicPistol_Weapon" parent="." instance=ExtResource("1_nhvnd")]
 ReloadTime = 1.0
+ID = 1
+
+[node name="reverber_weapon" parent="." instance=ExtResource("3_qnhb4")]

@@ -5,10 +5,13 @@ class_name Weapon extends Node2D
 @export var MaxCharges: int = 4
 @export var ReloadTime: float = 2.0
 
+@export var ID: int = 0
+
 var reload = 0.0
 var charge = 4
 
 func _physics_process(delta: float) -> void:
+	if !get_parent().active_weapon == ID: return
 	if Input.is_action_just_pressed("fire") and reload <= 0 and charge > 0:
 		charge -= 1
 		if charge <= 0:

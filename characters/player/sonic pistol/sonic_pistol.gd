@@ -25,8 +25,7 @@ func fire():
 				target.take_damage(maxf(1.0, Damage - dampening), targetdir)
 				break
 			elif result.get("collider") is ReverberWave:
-				dampening = 0.0
-				bounces = 0
+				dampening = -1.0
 				exceptions.append(result.get("rid"))
 				targetpos = result.get("collider").position
 				targetdir = Vector2.from_angle(result.get("collider").rotation)

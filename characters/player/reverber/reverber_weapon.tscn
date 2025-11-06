@@ -6,3 +6,4 @@
 script = ExtResource("1_0qgce")
 Damage = 7.0
 MaxCharges = 2
+ID = 2
