@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dvsfcd6hbak57"]
+
+[ext_resource type="Script" uid="uid://l335yece5a6p" path="res://characters/player/reverber/reverber_weapon.gd" id="1_0qgce"]
+
+[node name="reverber_weapon" type="Node2D"]
+script = ExtResource("1_0qgce")
+Damage = 7.0
+MaxCharges = 2

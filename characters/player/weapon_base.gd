@@ -9,7 +9,7 @@ var reload = 0.0
 var charge = 4
 
 func _physics_process(delta: float) -> void:
-	if Input.is_action_pressed("fire") and reload <= 0 and charge > 0:
+	if Input.is_action_just_pressed("fire") and reload <= 0 and charge > 0:
 		charge -= 1
 		if charge <= 0:
 			charge = MaxCharges
