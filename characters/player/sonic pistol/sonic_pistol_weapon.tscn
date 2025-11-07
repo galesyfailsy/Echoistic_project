@@ -5,6 +5,7 @@
 
 [node name="SonicPistol_Weapon" type="Node2D"]
 script = ExtResource("1_82h8i")
+ID = 1
 
 [node name="linedraw" type="Sprite2D" parent="."]
 top_level = true

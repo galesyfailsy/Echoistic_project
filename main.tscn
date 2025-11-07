@@ -1,11 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://dqnoqaa1e01ce"]
+[gd_scene load_steps=4 format=3 uid="uid://dqnoqaa1e01ce"]
 
 [ext_resource type="PackedScene" uid="uid://co2u7uburylva" path="res://characters/player/player.tscn" id="1_ig7tw"]
-
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_ig7tw"]
-vertices = PackedVector2Array(1077.4922, 192.09375, 1098.4688, 607.9219, 973.5, 607.0781, 973.5, 316.5, 88.671875, 201.89844, 800.5, 316.5, 205.5, 601.9375, 75.328125, 601.0625, 205.5, 318.5, 378.5, 318.5, 800.5, 605.9219, 378.5, 603.09375)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 0, 3, 5), PackedInt32Array(6, 7, 4, 8), PackedInt32Array(8, 4, 5, 9), PackedInt32Array(5, 10, 11, 9)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(79, 192, 1087, 182, 1109, 618, 65, 611)])
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_0xm2m"]
 
@@ -17,20 +12,17 @@ size = Vector2(153, 345)
 [node name="player" parent="." instance=ExtResource("1_ig7tw")]
 position = Vector2(210, 79)
 
-[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(-257, -227)
-navigation_polygon = SubResource("NavigationPolygon_ig7tw")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="NavigationRegion2D"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="NavigationRegion2D/StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(0, 571)
 shape = SubResource("WorldBoundaryShape2D_0xm2m")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="NavigationRegion2D/StaticBody2D"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(292, 501)
 shape = SubResource("RectangleShape2D_ig7tw")
 
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="NavigationRegion2D/StaticBody2D"]
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(887, 499)
 shape = SubResource("RectangleShape2D_ig7tw")

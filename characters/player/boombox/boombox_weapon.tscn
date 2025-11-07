@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://bt6ps4d1p407u"]
+
+[ext_resource type="Script" uid="uid://cyb4bj4wyjkpy" path="res://characters/player/boombox/boombox_weapon.gd" id="1_jnipn"]
+
+[node name="Boombox_weapon" type="Node2D"]
+script = ExtResource("1_jnipn")
+Damage = 10.0
+MaxCharges = 1
+ReloadTime = 10.0
+ID = 3

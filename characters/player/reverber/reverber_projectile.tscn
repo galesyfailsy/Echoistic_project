@@ -4,12 +4,12 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3ua4j"]
 
-[node name="reverber_projectile" type="Area2D"]
-collision_mask = 4
+[node name="reverber_projectile" type="CharacterBody2D"]
+collision_layer = 8
+collision_mask = 13
+motion_mode = 1
 script = ExtResource("1_3u0e4")
-Speed = 0.4
+Speed = 0.75
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_3ua4j")
-
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -14,7 +14,7 @@ func fire():
 		global_position
 	]
 	while true:
-		var query = PhysicsRayQueryParameters2D.create(targetpos, targetpos + targetdir * 1600, 1 << 0 | 1 << 2)
+		var query = PhysicsRayQueryParameters2D.create(targetpos, targetpos + targetdir * 1600, 1 << 0 | 1 << 2 | 1 << 3)
 		query.collide_with_areas = true
 		var result = get_viewport().world_2d.direct_space_state.intersect_ray(query)
 		if !result.is_empty() and !(bounces >= MAX_bounces):
@@ -29,6 +29,11 @@ func fire():
 				exceptions.append(result.get("rid"))
 				targetpos = result.get("collider").position
 				targetdir = Vector2.from_angle(result.get("collider").rotation)
+			elif result.get("collider") is BoomboxBomb:
+				result.get("collider").quickdetonate()
+				result.get("collider").Speed = 0.0
+				result.get("collider")._on_timer_timeout()
+				break
 			else:
 				targetpos = result.get("position") + result.get("normal")
 				targetdir = targetdir.bounce(result.get("normal").normalized())

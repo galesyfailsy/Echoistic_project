@@ -3,7 +3,7 @@ class_name Weapon extends Node2D
 
 @export var Damage: float = 5.0
 @export var MaxCharges: int = 4
-@export var ReloadTime: float = 2.0
+@export var ReloadTime: float = 1.0
 
 @export var ID: int = 0
 
