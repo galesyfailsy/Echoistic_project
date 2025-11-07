@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://b8dkau4dy2oh8"]
+
+[ext_resource type="Script" uid="uid://b21dt5ubqgbc8" path="res://characters/enemies/shriek/shriek_enemy.gd" id="1_qxtmf"]
+[ext_resource type="PackedScene" uid="uid://c522ocb521xv3" path="res://characters/enemies/hitbox.tscn" id="2_3ysxc"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3ysxc"]
+radius = 8.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tvwoo"]
+radius = 64.0
+
+[node name="ShriekEnemy" type="CharacterBody2D"]
+motion_mode = 1
+script = ExtResource("1_qxtmf")
+Health = 7.0
+Speed = 1.5
+KBFactor = 2.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_3ysxc")
+debug_color = Color(0.9825035, 0, 0.36580434, 0.41960785)
+
+[node name="sightline" type="RayCast2D" parent="."]
+
+[node name="Hitbox" parent="." instance=ExtResource("2_3ysxc")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CircleShape2D_tvwoo")
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

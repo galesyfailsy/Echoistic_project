@@ -108,6 +108,7 @@ func life_buffers_process():
 
 func take_damage(dir: Vector2):
 	if ivtime > 0: return
+	print("hit")
 	health -= 1
 	if health <= 0:
 		return
