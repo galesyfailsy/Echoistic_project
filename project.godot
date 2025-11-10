@@ -26,6 +26,7 @@ window/size/viewport_height=360
 
 [editor]
 
+movie_writer/movie_file="/media/galesyfailsy/3219302b-489c-4c1b-90de-59691fe40f33/Projects/echoistic_demo.avi"
 version_control/plugin_name="GitPlugin"
 version_control/autoload_on_startup=true
 

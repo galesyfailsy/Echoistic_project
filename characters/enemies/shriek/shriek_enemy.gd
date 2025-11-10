@@ -26,7 +26,6 @@ func die():
 	if !detonating:
 		detonate()
 
-
 func _on_timer_timeout() -> void:
 	if !detonating:
 		detonate()

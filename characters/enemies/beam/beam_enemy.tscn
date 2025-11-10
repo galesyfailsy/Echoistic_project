@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://0eqsan0bk5vp"]
+
+[ext_resource type="Script" uid="uid://bv2e27y6136kq" path="res://characters/enemies/beam/beam_enemy.gd" id="1_bqlq7"]
+[ext_resource type="PackedScene" uid="uid://c522ocb521xv3" path="res://characters/enemies/hitbox.tscn" id="2_sh6qq"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_iu3aq"]
+
+[node name="BeamEnemy" type="CharacterBody2D"]
+script = ExtResource("1_bqlq7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_iu3aq")
+debug_color = Color(0.9734008, 0.06292435, 0.38868758, 0.41960785)
+
+[node name="Hitbox" parent="." instance=ExtResource("2_sh6qq")]
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="Hitbox"]
+polygon = PackedVector2Array(0, 0, 450, -15, 450, 15)
