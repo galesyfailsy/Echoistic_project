@@ -8,6 +8,7 @@ func _process(delta: float) -> void:
 	if collision:
 		if collision.get_collider() is Enemy:
 			collision.get_collider().take_damage(7.0, global_position.direction_to(collision.get_collider().global_position))
+			queue_free()
 		elif collision.get_collider() is BoomboxBomb:
 			collision.get_collider().Speed += 0.2
 		else:

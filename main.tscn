@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://dqnoqaa1e01ce"]
 
 [ext_resource type="PackedScene" uid="uid://co2u7uburylva" path="res://characters/player/player.tscn" id="1_ig7tw"]
-[ext_resource type="PackedScene" uid="uid://0eqsan0bk5vp" path="res://characters/enemies/beam/beam_enemy.tscn" id="2_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://b1kq6ergoxorh" path="res://characters/enemies/tankbox/TankboxEnemy.tscn" id="2_0xm2m"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_0xm2m"]
 
@@ -28,5 +28,5 @@ shape = SubResource("RectangleShape2D_ig7tw")
 position = Vector2(887, 499)
 shape = SubResource("RectangleShape2D_ig7tw")
 
-[node name="BeamEnemy" parent="." instance=ExtResource("2_0xm2m")]
-position = Vector2(141, 328)
+[node name="RemnantEnemy" parent="." instance=ExtResource("2_0xm2m")]
+Speed = 0.2

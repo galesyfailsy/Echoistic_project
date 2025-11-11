@@ -6,7 +6,11 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_iu3aq"]
 
 [node name="BeamEnemy" type="CharacterBody2D"]
+motion_mode = 1
 script = ExtResource("1_bqlq7")
+Health = 10.0
+Speed = 0.0
+KBFactor = 1.75
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_iu3aq")

@@ -1,5 +1,7 @@
 extends Enemy
 
+const JUMPFORCE = -450.0
+
 var attacking: bool = false
 
 func behavior():
@@ -11,6 +13,9 @@ func behavior():
 	else:
 		velocity.x = lerpf(velocity.x, 0, 0.1)
 		attack()
+	
+	if is_on_floor() and global_position.y - target.global_position.y > 64:
+		velocity.y = JUMPFORCE
 	
 	move_and_slide()
 	

@@ -14,7 +14,7 @@ func fire():
 		global_position
 	]
 	while true:
-		var query = PhysicsRayQueryParameters2D.create(targetpos, targetpos + targetdir * 1600, 1 << 0 | 1 << 2 | 1 << 3)
+		var query = PhysicsRayQueryParameters2D.create(targetpos, targetpos + targetdir * 1000, 1 << 0 | 1 << 2 | 1 << 3)
 		query.collide_with_areas = true
 		var result = get_viewport().world_2d.direct_space_state.intersect_ray(query)
 		if !result.is_empty() and !(bounces >= MAX_bounces):
@@ -39,7 +39,7 @@ func fire():
 				targetdir = targetdir.bounce(result.get("normal").normalized())
 				bounces += 1
 		else:
-			collisionpoints.append(targetdir * 1000.0)
+			collisionpoints.append(targetpos + targetdir * 1000.0)
 			break
 	dampening = 0.0
 	lines[collisionpoints] = 1.0

@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://b1kq6ergoxorh"]
+
+[ext_resource type="Script" uid="uid://iyip7vv4psvo" path="res://characters/enemies/tankbox/tankbox_enemy.gd" id="1_01lnm"]
+[ext_resource type="PackedScene" uid="uid://c522ocb521xv3" path="res://characters/enemies/hitbox.tscn" id="2_sygqx"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8dol8"]
+radius = 16.0
+height = 64.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8dol8"]
+size = Vector2(48, 64)
+
+[node name="TankboxEnemy" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("1_01lnm")
+Health = 35.0
+Speed = 0.4
+KBFactor = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_8dol8")
+debug_color = Color(0.9623242, 2.0214916e-06, 0.5080306, 0.41960785)
+
+[node name="Hitbox" parent="." instance=ExtResource("2_sygqx")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(-40, 0)
+shape = SubResource("RectangleShape2D_8dol8")

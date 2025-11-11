@@ -11,4 +11,4 @@ func toggle_activate(value:bool):
 func _on_body_entered(body: Node2D) -> void:
 	if get_tree().get_nodes_in_group("PlayerNode").has(body):
 		body.take_damage(global_position.direction_to(body.global_position))
-	
+		toggle_activate.call_deferred(false)
