@@ -1,7 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://dqnoqaa1e01ce"]
+[gd_scene load_steps=4 format=3 uid="uid://dqnoqaa1e01ce"]
 
 [ext_resource type="PackedScene" uid="uid://co2u7uburylva" path="res://characters/player/player.tscn" id="1_ig7tw"]
-[ext_resource type="PackedScene" uid="uid://b1kq6ergoxorh" path="res://characters/enemies/tankbox/TankboxEnemy.tscn" id="2_0xm2m"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_0xm2m"]
 
@@ -27,6 +26,3 @@ shape = SubResource("RectangleShape2D_ig7tw")
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(887, 499)
 shape = SubResource("RectangleShape2D_ig7tw")
-
-[node name="RemnantEnemy" parent="." instance=ExtResource("2_0xm2m")]
-Speed = 0.2
