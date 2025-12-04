@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://dqnoqaa1e01ce"]
 
-[ext_resource type="PackedScene" uid="uid://co2u7uburylva" path="res://characters/player/player.tscn" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://66t76ob44bsl" path="res://characters/player/player.tscn" id="1_ig7tw"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_0xm2m"]
 
@@ -8,9 +8,6 @@
 size = Vector2(153, 345)
 
 [node name="Main" type="Node2D"]
-
-[node name="player" parent="." instance=ExtResource("1_ig7tw")]
-position = Vector2(210, 79)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(-257, -227)
@@ -26,3 +23,5 @@ shape = SubResource("RectangleShape2D_ig7tw")
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(887, 499)
 shape = SubResource("RectangleShape2D_ig7tw")
+
+[node name="Player" parent="." instance=ExtResource("1_ig7tw")]
