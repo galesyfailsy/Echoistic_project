@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://cpc66od1shwk1"]
+
+[ext_resource type="Script" uid="uid://c537ro130uqal" path="res://characters/player/weapons/0 - StringWhip/string_whip.gd" id="1_hx3o5"]
+
+[node name="StringWhip" type="Node2D"]
+script = ExtResource("1_hx3o5")
+Cooldown = null
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PackedVector2Array(0, 0, 240, 30, 240, -30)
